@@ -21,14 +21,15 @@ class DbUtil {
   }
 
   static query(queryString, context) {
-    return DbUtil.getConnection(context).then(client => {
-      return client.query(queryString).then(res => {
+    return DbUtil.getConnection(context).then(client => (
+      client.query(queryString).then(res => {
         client.release();
         return res.rows;
       }).catch(e => {
         client.release();
+        throw e;
       })
-    })
+    ));
   }
 }
 

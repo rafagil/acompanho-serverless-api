@@ -1,7 +1,7 @@
 {
-  "name": "serverless",
+  "name": "acompanho-serverless-api",
   "version": "1.0.0",
-  "description": "Dependencias para o serverless api",
+  "description": "RSS reader api for Azure Functions",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
