@@ -5,13 +5,17 @@ const DB = require('../util/db.util');
 class CategoriesController {
 
   find(req) {
-    return new Promise((resolve, reject) => {
-      resolve({ id: req.params.id, name: 'Testes depois da promessa' })
-    })
+    return DB.query('SELECT * from categories where id = $1', [req.params.id])
+      .then(rows => {
+        if (rows && rows.length) {
+          return rows[0];
+        }
+        return { status: 404 }
+      })
   }
 
   list(req, context) {
-    return DB.query('SELECT * from categories', context).then(rows => rows);
+    return DB.query('SELECT * from categories').then(rows => rows);
   }
 
   create(req) {

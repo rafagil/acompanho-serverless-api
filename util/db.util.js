@@ -3,7 +3,7 @@ const Client = pg.Client;
 const Pool = pg.Pool;
 
 class DbUtil {
-  static getConnection(context) {
+  static getConnection() {
     if (!this.pool) {
       this.pool = new Pool({
         user: process.env.DB_USER,
@@ -13,16 +13,13 @@ class DbUtil {
         min: 1,
         max: 5
       });
-      context.log('creating a new pool');
-    } else {
-      context.log('re-using a pool');
     }
     return this.pool.connect();
   }
 
-  static query(queryString, context) {
-    return DbUtil.getConnection(context).then(client => (
-      client.query(queryString).then(res => {
+  static query(queryString, params) {
+    return DbUtil.getConnection().then(client => (
+      client.query(queryString, params).then(res => {
         client.release();
         return res.rows;
       }).catch(e => {
