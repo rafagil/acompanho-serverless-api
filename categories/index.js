@@ -19,6 +19,7 @@ class CategoriesController {
   }
 
   create(req) {
+    context.log(req);
     const queryParams = [req.body.name, req.body.description];
     return DB.query('insert into categories (name, description) values($1, $1)', queryParams);
   }
