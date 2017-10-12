@@ -5,7 +5,7 @@ const DB = require('../util/db.util');
 class CategoriesController {
 
   find(req) {
-    return DB.query('SELECT * from categories where id = $1', [req.params.id])
+    return DB.query('select * from categories where id = $1', [req.params.id])
       .then(rows => {
         if (rows && rows.length) {
           return rows[0];
@@ -15,19 +15,21 @@ class CategoriesController {
   }
 
   list(req, context) {
-    return DB.query('SELECT * from categories').then(rows => rows);
+    return DB.query('select * from categories');
   }
 
   create(req) {
-    return req.body;
+    const queryParams = [req.body.name, req.body.description];
+    return DB.query('insert into categories (name, description) values($1, $1)', queryParams);
   }
 
   update(req) {
-    return req.body;
+    const queryParams = [req.body.name, req.body.description, req.params.id];
+    return DB.query('update categories set name = $1, description = $2 where id = $3', queryParams);
   }
 
   remove(req) {
-    return req.body;
+    return DB.query('delete from categories where id = $1', [req.params.id]);
   }
 }
 
