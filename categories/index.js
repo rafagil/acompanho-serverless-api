@@ -25,8 +25,7 @@ class CategoriesController {
 
   update(req) {
     const queryParams = [req.body.name, req.body.description, req.params.id];
-    return DB.query('update categories set name = $1, description = $2 where id = $3', queryParams)
-      .then(() => req.body);
+    return DB.query('update categories set name = $1, description = $2 where id = $3 returning *', queryParams);
   }
 
   remove(req) {
