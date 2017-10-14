@@ -1,4 +1,4 @@
-const Log = require('./log.util');
+// const Log = require('./log.util');
 const pg = require('pg');
 const Client = pg.Client;
 const Pool = pg.Pool;
@@ -14,7 +14,7 @@ class DbUtil {
         min: 1,
         max: 5
       });
-      Log.log('Started a new pool');
+      // Log.log('Started a new pool');
     }
     return this.pool.connect();
   }

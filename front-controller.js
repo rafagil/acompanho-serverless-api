@@ -1,4 +1,4 @@
-const Log = require('./util/log.util');
+// const Log = require('./util/log.util');
 function error405() {
   return { status: 405, body: "Method not allowed" }
 }
@@ -13,7 +13,7 @@ function getResponse(controller, req, context, method) {
 module.exports = (controller) => {
   return (context, req) => {
     let res = null;
-    Log.setLogger(context.log);
+    // Log.setLogger(context.log);
     switch (req.method) {
       case "POST":
         if (req.params.id)
