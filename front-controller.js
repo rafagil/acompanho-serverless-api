@@ -1,4 +1,4 @@
-const Log = require('../util/log.util');
+const Log = require('./util/log.util');
 function error405() {
   return { status: 405, body: "Method not allowed" }
 }
