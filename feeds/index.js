@@ -1,5 +1,6 @@
 const frontController = require('../front-controller');
 const DB = require('../util/db.util');
+const FeedUtil = require('../util/feed.util');
 
 class FeedsController {
 
