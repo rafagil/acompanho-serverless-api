@@ -22,7 +22,7 @@
                     "OPTIONS"
                 ]
             },
-            "backendUri": "https://%BACK_END%/api/categories"
+            "backendUri": "https://%BACK_END%/api/categories&code=%FUNCTION_KEY%"
         },
         "categoryProxy": {
             "matchCondition": {
@@ -34,7 +34,7 @@
                     "PUT"
                 ]
             },
-            "backendUri": "https://%BACK_END%/api/categories?id={id}"
+            "backendUri": "https://%BACK_END%/api/categories?id={id}&code=%FUNCTION_KEY%"
         },
         "feedsProxy": {
             "matchCondition": {
@@ -58,7 +58,7 @@
                     "PUT"
                 ]
             },
-            "backendUri": "https://%BACK_END%/api/feeds?id={id}&categoryId={categoryId}"
+            "backendUri": "https://%BACK_END%/api/feeds?id={id}&categoryId={categoryId}&code=%FUNCTION_KEY%"
         }
     }
 }
