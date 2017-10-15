@@ -22,7 +22,7 @@
                     "OPTIONS"
                 ]
             },
-            "backendUri": "https://%BACK_END%/api/categories&code=%FUNCTION_KEY%"
+            "backendUri": "https://%BACK_END%/api/categories?code=%FUNCTION_KEY%"
         },
         "categoryProxy": {
             "matchCondition": {
