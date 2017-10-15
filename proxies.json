@@ -46,7 +46,7 @@
                     "OPTIONS"
                 ]
             },
-            "backendUri": "https://%BACK_END%/api/feeds?categoryId={categoryId}&code=%_master%"
+            "backendUri": "https://%BACK_END%/api/feeds?categoryId={categoryId}&code=%FUNCTION_KEY%"
         },
         "feedProxy": {
             "matchCondition": {
