@@ -1,4 +1,64 @@
 {
     "$schema": "http://json.schemastore.org/proxies",
-    "proxies": {}
+    "proxies": {
+        "StaticIndex": {
+            "matchCondition": {
+                "route": "/",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "http://%ACOMPANHO_STATIC%/index.html"
+        },
+        "categoriesProxy": {
+            "matchCondition": {
+                "route": "/rest/categories",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "POST",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "https://%BACK_END%/api/categories"
+        },
+        "categoryProxy": {
+            "matchCondition": {
+                "route": "/rest/categories/{id}",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS",
+                    "PUT"
+                ]
+            },
+            "backendUri": "https://%BACK_END%/api/categories?id={id}"
+        },
+        "feedsProxy": {
+            "matchCondition": {
+                "route": "/rest/categories/{categoryId}/feeds",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "POST",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "https://%BACK_END%/api/feeds?categoryId={categoryId}"
+        },
+        "feedProxy": {
+            "matchCondition": {
+                "route": "/rest/categories/{categoryId}/feeds/{id}",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS",
+                    "PUT"
+                ]
+            },
+            "backendUri": "https://%BACK_END%/api/feeds?id={id}&categoryId={categoryId}"
+        }
+    }
 }
