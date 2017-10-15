@@ -12,7 +12,7 @@
             },
             "backendUri": "http://%ACOMPANHO_STATIC%/index.html"
         },
-        "categories": {
+        "categoriesProxy": {
             "matchCondition": {
                 "route": "/api/categories",
                 "methods": [
@@ -24,7 +24,7 @@
             },
             "backendUri": "http://acompanho.azurewebsites.net/api/categories"
         },
-        "category": {
+        "categoryProxy": {
             "matchCondition": {
                 "route": "/api/categories/{id}",
                 "methods": [
@@ -36,7 +36,7 @@
             },
             "backendUri": "http://acompanho.azurewebsites.net/api/categories?id={id}"
         },
-        "feeds": {
+        "feedsProxy": {
             "matchCondition": {
                 "route": "/api/categories/{categoryId}/feeds",
                 "methods": [
@@ -48,7 +48,7 @@
             },
             "backendUri": "http://acompanho.azurewebsites.net/api/feeds?categoryId={categoryId}"
         },
-        "feed": {
+        "feedProxy": {
             "matchCondition": {
                 "route": "/api/categories/{categoryId}/feeds/{id}",
                 "methods": [
