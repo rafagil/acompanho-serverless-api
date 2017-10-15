@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "feedparser": "^2.2.2",
     "pg": "^7.3.0"
   }
 }
