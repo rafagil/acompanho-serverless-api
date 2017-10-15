@@ -14,7 +14,7 @@
         },
         "categoriesProxy": {
             "matchCondition": {
-                "route": "/api/categories",
+                "route": "/rest/categories",
                 "methods": [
                     "GET",
                     "HEAD",
@@ -26,7 +26,7 @@
         },
         "categoryProxy": {
             "matchCondition": {
-                "route": "/api/categories/{id}",
+                "route": "/rest/categories/{id}",
                 "methods": [
                     "GET",
                     "HEAD",
@@ -38,7 +38,7 @@
         },
         "feedsProxy": {
             "matchCondition": {
-                "route": "/api/categories/{categoryId}/feeds",
+                "route": "/rest/categories/{categoryId}/feeds",
                 "methods": [
                     "GET",
                     "HEAD",
@@ -50,7 +50,7 @@
         },
         "feedProxy": {
             "matchCondition": {
-                "route": "/api/categories/{categoryId}/feeds/{id}",
+                "route": "/rest/categories/{categoryId}/feeds/{id}",
                 "methods": [
                     "GET",
                     "HEAD",
