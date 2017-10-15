@@ -5,7 +5,7 @@ const DB = require('../util/db.util');
 class CategoriesController {
 
   find(req) {
-    return DB.query('select * from categories where id = $1', [req.params.id])
+    return DB.query('select * from categories where id = $1', [req.query.id])
       .then(rows => {
         if (rows && rows.length) {
           return rows[0];
@@ -18,18 +18,18 @@ class CategoriesController {
     return DB.query('select * from categories');
   }
 
-  create(req, context) {
+  create(req) {
     const queryParams = [req.body.name, req.body.description];
     return DB.query('insert into categories (name, description) values ($1, $2) returning *', queryParams);
   }
 
   update(req) {
-    const queryParams = [req.body.name, req.body.description, req.params.id];
+    const queryParams = [req.body.name, req.body.description, req.query.id];
     return DB.query('update categories set name = $1, description = $2 where id = $3 returning *', queryParams);
   }
 
   remove(req) {
-    return DB.query('delete from categories where id = $1', [req.params.id]);
+    return DB.query('delete from categories where id = $1', [req.query.id]);
   }
 }
 

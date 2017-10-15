@@ -11,6 +11,54 @@
                 ]
             },
             "backendUri": "http://%ACOMPANHO_STATIC%/index.html"
+        },
+        "categories": {
+            "matchCondition": {
+                "route": "/api/categories",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "POST",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "http://acompanho.azurewebsites.net/api/categories"
+        },
+        "category": {
+            "matchCondition": {
+                "route": "/api/categories/{id}",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS",
+                    "PUT"
+                ]
+            },
+            "backendUri": "http://acompanho.azurewebsites.net/api/categories?id={id}"
+        },
+        "feeds": {
+            "matchCondition": {
+                "route": "/api/categories/{categoryId}/feeds",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "POST",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "http://acompanho.azurewebsites.net/api/feeds?categoryId={categoryId}"
+        },
+        "feed": {
+            "matchCondition": {
+                "route": "/api/categories/{categoryId}/feeds/{id}",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS",
+                    "PUT"
+                ]
+            },
+            "backendUri": "http://acompanho.azurewebsites.net/api/feeds?id={id}&categoryId={categoryId}"
         }
     }
 }
