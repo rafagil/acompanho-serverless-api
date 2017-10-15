@@ -19,8 +19,10 @@ class FeedsController {
   }
 
   create(req, context) {
-    const queryParams = [req.body.name, req.body.description];
-    return DB.query('insert into feeds (name, description) values ($1, $2) returning *', queryParams);
+    FeedUtil.parseFeedMeta(req.body.url).then((feed) => {
+      const queryParams = [feed.title, feed.description, feed.link, feed.url, false, req.query.categoryId];
+      return DB.query('insert into feeds (title, description, link, url, failedUpdate, category_id) values ($1, $2, $3, $4, $5, $6) returning *', queryParams);
+    });
   }
 
   update(req) {
