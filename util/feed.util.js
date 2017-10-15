@@ -10,7 +10,7 @@ const parseFeed = (feedUrl, event, onReadable, onError) => {
     }
   });
 
-  req.on('response', (res) => {
+  req.on('response', function(res) {
     const stream = this;
 
     if (res.statusCode !== 200) {

@@ -14,15 +14,14 @@ class FeedsController {
       })
   }
 
-  list(req, context) {
-    context.log(req.query);
+  list(req) {
     return DB.query('select * from feeds where category_id = $1', [req.query.categoryId]);
   }
 
   create(req, context) {
     return FeedUtil.parseFeedMeta(req.body.url).then((feed) => {
-      const queryParams = [feed.title, feed.description, feed.link, feed.url, false, req.query.categoryId];
-      return DB.query('insert into feeds (title, description, link, url, failedUpdate, category_id) values ($1, $2, $3, $4, $5, $6) returning *', queryParams);
+      const queryParams = [feed.title, feed.description, feed.link, feed.url, req.query.categoryId];
+      return DB.query('insert into feeds (title, description, link, url, category_id) values ($1, $2, $3, $4, $5) returning *', queryParams);
     });
   }
 
