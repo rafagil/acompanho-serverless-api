@@ -5,7 +5,8 @@ const DB = require('../util/db.util');
 class CategoriesController {
 
   find(req) {
-    return DB.query('select * from categories where id = $1', [req.query.id])
+    const userId = req.headers['x-ms-client-principal-id'];
+    return DB.query('select id, name, description from categories where id = $1 and user_id = $2', [req.query.id, userId])
       .then(rows => {
         if (rows && rows.length) {
           return rows[0];
@@ -15,21 +16,25 @@ class CategoriesController {
   }
 
   list(req) {
-    return DB.query('select * from categories');
+    const userId = req.headers['x-ms-client-principal-id'];
+    return DB.query('select id, name, description from categories where user_id = $1', [userId]);
   }
 
   create(req) {
-    const queryParams = [req.body.name, req.body.description];
-    return DB.query('insert into categories (name, description) values ($1, $2) returning *', queryParams);
+    const userId = req.headers['x-ms-client-principal-id'];
+    const queryParams = [req.body.name, req.body.description, userId];
+    return DB.query('insert into categories (name, description, user_id) values ($1, $2, $3) returning *', queryParams);
   }
 
   update(req) {
-    const queryParams = [req.body.name, req.body.description, req.query.id];
-    return DB.query('update categories set name = $1, description = $2 where id = $3 returning *', queryParams);
+    const userId = req.headers['x-ms-client-principal-id'];
+    const queryParams = [req.body.name, req.body.description, req.query.id, userId];
+    return DB.query('update categories set name = $1, description = $2 where id = $3 and user_id = $4 returning *', queryParams);
   }
 
   remove(req) {
-    return DB.query('delete from categories where id = $1', [req.query.id]);
+    const userId = req.headers['x-ms-client-principal-id'];
+    return DB.query('delete from categories where id = $1 and user_id = $2', [req.query.id, userId]);
   }
 }
 
