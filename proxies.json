@@ -3,14 +3,14 @@
     "proxies": {
         "StaticIndex": {
             "matchCondition": {
-                "route": "/",
+                "route": "/{*restOfPath}",
                 "methods": [
                     "GET",
                     "HEAD",
                     "OPTIONS"
                 ]
             },
-            "backendUri": "http://%ACOMPANHO_STATIC%/index.html"
+            "backendUri": "http://%ACOMPANHO_STATIC%/{restOfPath}"
         },
         "categoriesProxy": {
             "matchCondition": {
