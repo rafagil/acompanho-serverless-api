@@ -13,7 +13,7 @@ function getResponse(controller, req, context, method) {
 module.exports = (controller) => {
   return (context, req) => {
     let res = null;
-    // Log.setLogger(context.log);
+    context.log(req);
     switch (req.method) {
       case "POST":
         if (req.query.id ||req.params.id)
