@@ -14,7 +14,8 @@ class FeedsController {
       })
   }
 
-  list(req) {
+  list(req, context) {
+    context.log(req);
     return DB.query('select * from feeds where category_id = $1', [req.query.categoryId]);
   }
 
