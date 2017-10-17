@@ -21,7 +21,7 @@
                     "OPTIONS"
                 ]
             },
-            "backendUri": "http://%ACOMPANHO_STATIC%/public/{*path}"
+            "backendUri": "http://%ACOMPANHO_STATIC%/public/{path}"
         },
         "categoriesProxy": {
             "matchCondition": {
