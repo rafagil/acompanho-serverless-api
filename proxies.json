@@ -14,14 +14,14 @@
         },
         "ResourcesProxy": {
             "matchCondition": {
-                "route": "/public/{*path}",
+                "route": "/static/{*path}",
                 "methods": [
                     "GET",
                     "HEAD",
                     "OPTIONS"
                 ]
             },
-            "backendUri": "http://%ACOMPANHO_STATIC%/public/{path}"
+            "backendUri": "http://%ACOMPANHO_STATIC%/static/{path}"
         },
         "categoriesProxy": {
             "matchCondition": {
