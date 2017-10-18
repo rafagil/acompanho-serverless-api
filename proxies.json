@@ -23,6 +23,28 @@
             },
             "backendUri": "http://%ACOMPANHO_STATIC%/static/{restOfPath}"
         },
+        "CssProxy": {
+            "matchCondition": {
+                "route": "/static/css/{*path}",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "http://%ACOMPANHO_STATIC%/static/css/{path}"
+        },
+        "JSProxy": {
+            "matchCondition": {
+                "route": "/static/js/{*path}",
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "OPTIONS"
+                ]
+            },
+            "backendUri": "http://%ACOMPANHO_STATIC%/static/js/{path}"
+        },
         "categoriesProxy": {
             "matchCondition": {
                 "route": "/rest/categories",
