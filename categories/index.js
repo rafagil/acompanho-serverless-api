@@ -15,7 +15,8 @@ class CategoriesController {
       })
   }
 
-  list(req) {
+  list(req, context) {
+    context.log(req.headers);
     const userId = req.headers['x-ms-client-principal-id'];
     return DB.query('select id, name, description from categories where user_id = $1', [userId]);
   }
