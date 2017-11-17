@@ -15,7 +15,30 @@ class EntriesController {
   }
 
   list(req) {
-    return DB.query('select * from entries where feed_id = $1', [req.query.feedId]);
+    const pageSize = 20; //TODO, think a better way to handle this.
+    let { page } = req.query;
+    if (!page) {
+      page = 0;
+    } else {
+      page = page - 1;
+    }
+
+    const countQuery = 'select count(1) from entries where feed_id = $1';
+    const query = `select * from entries
+                   where feed_id = $1
+                   order by pubdate desc
+                   limit $2 offset $3`;
+    return DB.query(countQuery, [req.query.feedId]).then(countRows => {
+      const count = countRows[0].count;
+      return DB.query(query, [req.query.feedId, pageSize, page * pageSize]).then(rows => {
+        const response = {
+          body: rows,
+          status: 200,
+          headers: { totalRecords: count, currentPage: `${page + 1}` }
+        }
+        return response;
+      });
+    });
   }
 
   /**

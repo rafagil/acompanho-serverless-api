@@ -15,25 +15,25 @@ module.exports = (controller) => {
     let res = null;
     switch (req.method) {
       case "POST":
-        if (req.query.id ||req.params.id)
+        if (req.query.id || req.params.id)
           res = error405(); //Não pode adicionar em um recurso
         else
           res = getResponse(controller, req, context, 'create');
         break;
       case "PUT":
-        if (req.query.id ||req.params.id)
+        if (req.query.id || req.params.id)
           res = getResponse(controller, req, context, 'update');
         else
           res = error405(); // Não pode atualizar sem id
         break;
       case "DELETE":
-        if (req.query.id ||req.params.id)
+        if (req.query.id || req.params.id)
           res = getResponse(controller, req, context, 'remove');
         else
           res = error405(); //Não pode deletar sem id
         break;
       case "GET":
-        if (req.query.id ||req.params.id)
+        if (req.query.id || req.params.id)
           res = getResponse(controller, req, context, 'find');
         else
           res = getResponse(controller, req, context, 'list');
@@ -42,6 +42,9 @@ module.exports = (controller) => {
     if (res.then) {
       res.then((res) => {
         context.res = res.status ? { status: res.status, body: res.body } : { body: res };
+        if (res.headers) {
+          context.res.headers = res.headers;
+        }
         context.done();
       });
       res.catch((e) => {
@@ -50,6 +53,9 @@ module.exports = (controller) => {
       });
     } else {
       context.res = res.status ? { status: res.status, body: res.body } : { body: res };
+      if (res.headers) {
+        context.res.headers = res.headers;
+      }
       context.done();
     }
   };
