@@ -16,7 +16,7 @@ class FeedsController {
 
   list(req, context) {
     const params = [req.headers['x-ms-client-principal-id']];
-    let query = `select * from feeds 
+    let query = `select feeds.* from feeds 
       join categories on categories.id = feeds.category_id 
       where categories.user_id = $1`;
     if (req.query.categoryId) {
