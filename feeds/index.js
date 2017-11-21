@@ -15,7 +15,15 @@ class FeedsController {
   }
 
   list(req, context) {
-    return DB.query('select * from feeds where category_id = $1', [req.query.categoryId]);
+    const params = [req.headers['x-ms-client-principal-id']];
+    let query = `select * from feeds 
+      join categories on categories.id = feeds.category_id 
+      where categories.user_id = $1`;
+    if (req.query.categoryId) {
+      query += ' and category_id = $2';
+      params.push(req.query.categoryId);
+    }
+    return DB.query(query, params);
   }
 
   create(req, context) {
